@@ -1,0 +1,39 @@
+<div class="mui-container fsc-mt-40">
+  <form
+    *ngIf="(product$ | async ) as product"
+    [formGroup]="productForm"
+    (submit)="submit()"
+    class="mui-form">
+    <div class="mui-textfield">
+      <input formControlName="title" autofocus>
+      <label>Título</label>
+      <small
+        class="mui--text-danger"
+        *ngIf="productForm.get('title').errors?.required && productForm.get('title').touched">
+        Título é obrigatório
+      </small>
+    </div>
+
+    <div class="mui-textfield">
+      <input formControlName="type">
+      <label>Tipo</label>
+      <small
+        class="mui--text-danger"
+        *ngIf="productForm.get('type').errors?.required && productForm.get('type').touched">
+        Tipo é obrigatório
+      </small>
+    </div>
+
+    <div class="mui-textfield">
+      <input formControlName="price" type="number" min="0" max="1.000.000" step="0.01">
+      <label>Preço</label>
+      <small
+        class="mui--text-danger"
+        *ngIf="productForm.get('price').errors?.required && productForm.get('price').touched">
+        Preço é obrigatório
+      </small>
+    </div>
+    <a class="mui-btn mui-btn--raised mui-btn--danger" [routerLink]="['']">Cancelar</a>
+    <button class="mui-btn mui-btn--raised mui-btn--primary" type="submit">Enviar</button>
+  </form>
+</div>

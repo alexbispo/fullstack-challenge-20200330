@@ -1,0 +1,7 @@
+version: '2'
+
+services:
+  mongodb_dev:
+    image: mongo:3.6
+    ports:
+      - 27017:27017

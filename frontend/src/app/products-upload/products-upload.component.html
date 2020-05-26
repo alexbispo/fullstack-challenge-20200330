@@ -1,0 +1,35 @@
+<div class="mui-container">
+  <form [formGroup]="productsForm" (submit)="upload()" class="mui-form--inline fsc-mt-40">
+    <button type="button" (click)="fileInput.click()" class="mui-btn mui-btn--accent">
+      <span *ngIf="!file">Anexar Arquivo .json</span>
+      <span *ngIf="file">{{ file.name }}</span>
+    </button>
+
+    <input
+      #fileInput
+      hidden
+      type="file"
+      formControlName="file"
+      (change)="handleFile($event.target.files[0])">
+
+      <button *ngIf="isValidFile"
+        type="submit"
+        class="mui-btn mui-btn--primary"
+        [disabled]="!isValidFile">
+        Enviar
+      </button>
+      <div *ngIf="!isValidFile && showFileError">
+        <small
+          class="mui--text-danger">
+          O formato do arquivo é inválido. Anexar arquivo .json
+        </small>
+
+      </div>
+
+      <!-- <ng-template #percent>
+        <div>
+          uploading {{ percentDone }}%
+        </div>
+      </ng-template> -->
+  </form>
+</div>
